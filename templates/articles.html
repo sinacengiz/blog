@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block body %}
+<h3>Makaleler</h3>
+<hr>
+{% if articles %}
+{% for article in articles  %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Blog Post - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-post.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h3 class="mt-4">{{article.title}}</h3>
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          {{article.author}}
+        </p>
+<p>{{article.content|safe|truncatewords:10}}</p>
+<a style="float:right" href="/articles/article/{{article.id}}" class="btn btn danger">Devamını oku</a>
+        <hr>
+
+        <!-- Date/Time -->
+        <p>{{article.created_date}}</p>
+
+        <hr>
+
+      {% if article.article_image %}
+         <img class="img-fluid rounded" src="{{article.article_image.url}}" alt=""> 
+      {% endif %}
+     
+
+        <hr>
+        <hr>
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+    <!-- /.row -->
+  </div>
+ 
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+{% endfor %}
+{% else %}
+<div class="alert alert-danger">Bu blokta makale yok</div>
+{% endif %}
+{% endblock body %}
